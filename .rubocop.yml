@@ -20,3 +20,6 @@ AllCops:
   NewCops: enable
   TargetRubyVersion: 3.3
   ParserEngine: parser_prism
+
+Style/Documentation:
+  Enabled: false
