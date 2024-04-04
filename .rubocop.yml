@@ -1,0 +1,22 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-capybara
+  - rubocop-factory_bot
+
+AllCops:
+  Include:
+    - Gemfile
+    - Rakefile
+    - config.ru
+    - lib/**/*.rake
+    - '**/*.rb'
+  Exclude:
+    - 'vendor/**/*'
+    - 'bin/*'
+    - 'node_modules/**/*'
+    - db/schema.rb
+  NewCops: enable
+  TargetRubyVersion: 3.3
+  ParserEngine: parser_prism
