@@ -6,10 +6,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :follower_requests, class_name: 'Request', dependent: :destroy,
+  has_many :received_requests, class_name: 'Request', dependent: :destroy,
                                inverse_of: :follower
-  has_many :following_requests, foreign_key: 'follower_id', class_name: 'Request', dependent: :destroy,
-                                inverse_of: :user
+  has_many :sent_requests, foreign_key: 'follower_id', class_name: 'Request', dependent: :destroy,
+                           inverse_of: :user
   has_many :followers, through: :follower_requests, class_name: 'User'
   has_many :following, through: :following_requests, source: :user, class_name: 'User'
 
