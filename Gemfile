@@ -67,6 +67,9 @@ group :development do
   # gem "spring"
 end
 
-gem 'devise', '~> 4.9'
+group :test do
+  gem 'capybara', '~> 3.40'
+  gem 'shoulda-matchers', '~> 6.2'
+end
 
-gem 'shoulda-matchers', '~> 6.2', group: :test
+gem 'devise', '~> 4.9'

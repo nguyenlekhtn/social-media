@@ -6,6 +6,8 @@ RSpec.describe 'FollowRequests', type: :system do
   end
 
   context "when current user click Follow button in a unfollowed user's profile" do
-    it 'will create'
+    it 'creates a new pending follow request' do
+      click_on 'Follow'
+    end
   end
 end
