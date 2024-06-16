@@ -8,5 +8,5 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 5.times do |i|
-  User.create(email: "user#{i}@mail.com", password: "abc1234")
+  User.create(email: "user#{i}@mail.com", password: 'abc1234')
 end
