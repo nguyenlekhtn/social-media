@@ -4,5 +4,5 @@ class Relationship < ApplicationRecord
   belongs_to :requester, class_name: 'User'
   belongs_to :requested_user, class_name: 'User'
 
-  validates :requester, uniqueness: { scope: :requested_user }
+  validates :requester, uniqueness: { scope: :requested_user } # rubocop:disable Rails/UniqueValidationWithoutIndex
 end

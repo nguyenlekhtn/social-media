@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_29_134426) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_16_143017) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "relationships", force: :cascade do |t|
-    t.bigint "requester_id"
-    t.bigint "requested_user_id"
+  create_table "relationships", primary_key: ["requester_id", "requested_user_id"], force: :cascade do |t|
+    t.bigint "requester_id", null: false
+    t.bigint "requested_user_id", null: false
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

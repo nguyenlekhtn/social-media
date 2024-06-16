@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :received_requests, foreign_key: 'requested_user_id', class_name: 'Relationship', dependent: :destroy,
                                inverse_of: :requested_user
 
-  has_many :followers, through: :received_requests
+  has_many :followers, through: :received_requests, source: :requester
 
   def following?(user)
     Request.where(user:, follower: self, status: 'A').any?
