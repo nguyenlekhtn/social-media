@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   has_many :followers, through: :received_requests, source: :requester
 
-  def following?(user)
-    Request.where(user:, follower: self, status: 'A').any?
+  def following?(another_user)
+    Request.where(requester: self, requested_user: another_user).any?
   end
 end
