@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_16_143017) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_02_140339) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_16_143017) do
     t.datetime "updated_at", null: false
     t.index ["requested_user_id"], name: "index_relationships_on_requested_user_id"
     t.index ["requester_id"], name: "index_relationships_on_requester_id"
+  end
+
+  create_table "requests", primary_key: ["requester_id", "requested_user_id"], force: :cascade do |t|
+    t.bigint "requester_id", null: false
+    t.bigint "requested_user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["requested_user_id"], name: "index_requests_on_requested_user_id"
+    t.index ["requester_id"], name: "index_requests_on_requester_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,4 +47,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_16_143017) do
 
   add_foreign_key "relationships", "users", column: "requested_user_id"
   add_foreign_key "relationships", "users", column: "requester_id"
+  add_foreign_key "requests", "users", column: "requested_user_id"
+  add_foreign_key "requests", "users", column: "requester_id"
 end
