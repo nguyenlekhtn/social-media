@@ -10,19 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_02_140339) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_02_141217) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "relationships", primary_key: ["requester_id", "requested_user_id"], force: :cascade do |t|
-    t.bigint "requester_id", null: false
-    t.bigint "requested_user_id", null: false
-    t.integer "status", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["requested_user_id"], name: "index_relationships_on_requested_user_id"
-    t.index ["requester_id"], name: "index_relationships_on_requester_id"
-  end
 
   create_table "requests", primary_key: ["requester_id", "requested_user_id"], force: :cascade do |t|
     t.bigint "requester_id", null: false
@@ -45,8 +35,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_02_140339) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "relationships", "users", column: "requested_user_id"
-  add_foreign_key "relationships", "users", column: "requester_id"
   add_foreign_key "requests", "users", column: "requested_user_id"
   add_foreign_key "requests", "users", column: "requester_id"
 end
