@@ -1,4 +1,4 @@
-require_relative 'relationship'
+require_relative 'request'
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -6,15 +6,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :sent_requests, foreign_key: 'requester_id', class_name: 'Relationship', dependent: :destroy,
+  has_many :sent_requests, foreign_key: 'requester_id', class_name: 'Request', dependent: :destroy,
                            inverse_of: :requester
 
-  has_many :received_requests, foreign_key: 'requested_user_id', class_name: 'Relationship', dependent: :destroy,
+  has_many :received_requests, foreign_key: 'requested_user_id', class_name: 'Request', dependent: :destroy,
                                inverse_of: :requested_user
-
-  has_many :followers, through: :received_requests, source: :requester
-
-  def following?(another_user)
-    Request.where(requester: self, requested_user: another_user).any?
-  end
 end
