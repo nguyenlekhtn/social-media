@@ -1,0 +1,7 @@
+<h1><%= @user.email %></h1>
+<p>Find me in app/views/users/show.html.erb</p>
+  <% if Request.exists?(requester: current_user, requested_user: @user) %>
+    <button disabled>Pending</button>
+  <% else %>
+    <button>Follow</button>
+  <% end %>
